@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-#0tsu605h100mp(t&9o#ae5wc3utjd(tk8(2orh*rv#uvg@@54
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['wall-mart-api.onrender.com', '127.0.0.1', 'localhost','localhost:5173']
+ALLOWED_HOSTS = ['arts-adada-com-api.onrender.com', '127.0.0.1', 'localhost','localhost:5173']
 
 
 # Application definition
