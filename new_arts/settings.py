@@ -69,12 +69,14 @@ CORS_ALLOW_ALL_ORIGINS = True
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        # Consider using this for authenticated endpoints only
+        'rest_framework.permissions.IsAuthenticated',
+    ],
 }
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(hours=15),
@@ -120,13 +122,14 @@ WSGI_APPLICATION = 'new_arts.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'new_arts_db_redesign_mbsw',
-        'USER': 'new_arts_db_redesign_mbsw_user',
-        'PASSWORD': '4Fjd5lfmaEI730Az2TCfZZGfi06RtbrH',
-        'HOST': 'dpg-cr1klvrtq21c73cukccg-a.oregon-postgres.render.com',
-        'PORT': '5432',  # Default PostgreSQL port
+        'NAME': 'new_arts_db_redesign_zgt6',
+        'USER': 'new_arts_db_redesign_zgt6_user',
+        'PASSWORD': 'mW7W98NMPRGpi5eGZTQdMLjMLPOtIGoQ',
+        'HOST': 'dpg-cr1m155ds78s739u02i0-a.oregon-postgres.render.com',
+        'PORT': '5432',  # Default port for PostgreSQL
     }
 }
+
 
 
 # Password validation
