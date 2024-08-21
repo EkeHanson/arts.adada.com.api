@@ -124,11 +124,11 @@ WSGI_APPLICATION = 'new_arts.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'new_arts_db_redesign_zgt6',
-        'USER': 'new_arts_db_redesign_zgt6_user',
-        'PASSWORD': 'mW7W98NMPRGpi5eGZTQdMLjMLPOtIGoQ',
-        'HOST': 'dpg-cr1m155ds78s739u02i0-a.oregon-postgres.render.com',
-        'PORT': '5432',  # Default port for PostgreSQL
+        'NAME': 'new_arts_db_redesign_etmu',
+        'USER': 'new_arts_db_redesign_etmu_user',
+        'PASSWORD': 'VLTihS0QGmeLl42pFxgtz7onota6oTR3',
+        'HOST': 'dpg-cr2rg4jtq21c73fdobdg-a.oregon-postgres.render.com',
+        'PORT': '5432',
     }
 }
 
