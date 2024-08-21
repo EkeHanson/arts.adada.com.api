@@ -7,5 +7,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     
-    path('api/register/', include('register.urls')),
+    path('api/courses/', include('courses.urls')),
 ]

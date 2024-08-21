@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
 
-    'register'
+    'register',
+    'courses',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +111,7 @@ WSGI_APPLICATION = 'new_arts.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
+
 
 # DATABASES = {
 #     'default': {
