@@ -1,4 +1,4 @@
-from rest_framework import generics, status
+from rest_framework import viewsets, status, views, generics
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
@@ -7,6 +7,7 @@ from .serializers import UserRegistrationSerializer, UserLoginSerializer, SendOT
 from rest_framework.permissions import AllowAny
 import requests
 from django.conf import settings
+from rest_framework.decorators import action
 from django.core.exceptions import ObjectDoesNotExist
 
 
@@ -59,10 +60,34 @@ class VerifyOTPView(generics.GenericAPIView):
         return Response({'detail': 'Invalid OTP'}, status=status.HTTP_400_BAD_REQUEST)
 
 
-class RegisterView(generics.CreateAPIView):
-    queryset = CustomUser.objects.all()
+
+class RegisterView(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = CustomUser.objects.all().order_by('-id')  # LIFO principle
     serializer_class = UserRegistrationSerializer
-    permission_classes = [AllowAny]  # Allow unauthenticated access
+
+    def partial_update(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=True)
+
+        if not serializer.is_valid():
+            # Log the specific errors for debugging
+            print(f"PATCH request errors: {serializer.errors}")
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        self.perform_update(serializer)
+        return Response(serializer.data)
+
+    @action(detail=False, methods=['get'], url_path='by-type/(?P<type>[^/.]+)')
+    def get_users_by_type(self, request, level=None):
+        if level not in ['CLIENT', 'ADMIN']:
+            return Response({"error": "Invalid Type"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        users = CustomUser.objects.filter(level=level).order_by('-id')  # LIFO principle
+        serializer = self.get_serializer(users, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+
 
 
 class LoginView(generics.GenericAPIView):
