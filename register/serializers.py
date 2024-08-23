@@ -1,7 +1,16 @@
 from rest_framework import serializers
 from .models import CustomUser
 
+
+class SendOTPSerializer(serializers.Serializer):
+    phone_number = serializers.CharField(max_length=15)
+class VerifyOTPSerializer(serializers.Serializer):
+    otp_session_id = serializers.CharField(max_length=255)
+    otp_entered_by_user = serializers.CharField(max_length=6)
+
+
 class UserRegistrationSerializer(serializers.ModelSerializer):
+    user_type = serializers.CharField(default='student')
     password = serializers.CharField(write_only=True)
     
     class Meta:
@@ -16,6 +25,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
             password=validated_data['password']
         )
         return user
+
 
 class UserLoginSerializer(serializers.Serializer):
     email = serializers.EmailField()

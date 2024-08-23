@@ -20,6 +20,9 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser):
     email = models.EmailField(unique=True)
     phone = models.CharField(max_length=15)
+
+    user_type = models.CharField(max_length=10, default="student", choices=[('admin', 'Admin'), ('student', 'Student')])
+
     full_name = models.CharField(max_length=255)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
