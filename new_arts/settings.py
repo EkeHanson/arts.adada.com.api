@@ -60,7 +60,7 @@ AUTH_USER_MODEL = 'register.CustomUser'
 # Configure CORS
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "arts-new-project.vercel.app" # Add your frontend's origin here
+    "https://arts-new-project.vercel.app" # Add your frontend's origin here
     # Add any other origins you want to allow
 ]
 
