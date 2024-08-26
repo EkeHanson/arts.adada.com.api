@@ -3,8 +3,8 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from django.utils import timezone
 from decimal import Decimal
-from .models import Category, Course, Instructors
-from .serializers import  CategorySerializer, CourseSerializer, InstructorSerializer
+from .models import Category, Course, Instructors, MainCategory
+from .serializers import  CategorySerializer, CourseSerializer, InstructorSerializer, MainCategorySerializer
 
 
 class CourseViewSet(viewsets.ModelViewSet):
@@ -23,4 +23,10 @@ class CategoryViewSet(viewsets.ModelViewSet):
     permission_classes = [AllowAny]
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+
+class MainCategoryViewSet(viewsets.ModelViewSet):
+    permission_classes = [AllowAny]
+    queryset = MainCategory.objects.all()
+    serializer_class = MainCategorySerializer
 

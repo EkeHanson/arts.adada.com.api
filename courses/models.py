@@ -3,6 +3,7 @@ from django.db.models.signals import pre_save
 from django.dispatch import receiver
 import random
 
+
 class Instructors(models.Model):
     email = models.EmailField(max_length=80, unique=True)
     instructor_first_name = models.CharField(max_length=200)
@@ -19,6 +20,7 @@ class Instructors(models.Model):
         verbose_name = "Instructor"
         verbose_name_plural = "Instructors"
 
+
 @receiver(pre_save, sender=Instructors)
 def generate_instructor_id(sender, instance, *args, **kwargs):
     # Generate a random 8-digit number
@@ -26,7 +28,20 @@ def generate_instructor_id(sender, instance, *args, **kwargs):
     # Assign the generated ID to the instance
     instance.instructor_id = random_id
 
+
+class MainCategory(models.Model):
+    name = models.CharField(max_length=100)
+
+    class Meta:
+        verbose_name = "MainCategory"
+        verbose_name_plural = "MainCategories"
+
+    def __str__(self):
+        return self.name
+
+
 class Category(models.Model):
+    mainCategory = models.ForeignKey(MainCategory, on_delete=models.CASCADE, related_name='categories')  # Relationship to Sector
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to='category_images', blank=True, null=True)
     details = models.TextField()
@@ -37,6 +52,7 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Course(models.Model):
     title = models.CharField(max_length=200)
@@ -49,8 +65,6 @@ class Course(models.Model):
     number_of_students = models.IntegerField(blank=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='courses')
     instructor_id = models.ForeignKey(Instructors, on_delete=models.CASCADE, related_name='courses')
-    
-   
 
     class Meta:
         verbose_name = "Course"

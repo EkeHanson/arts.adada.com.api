@@ -128,17 +128,13 @@ TWO_FACTOR_API_KEY = 'your_api_key_here'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'new_arts_db_redesign_hj3x',
-        'USER': 'new_arts_db_redesign_hj3x_user',
-        'PASSWORD': 'cwTrk04tY5XQEA2c6Lmj5rzDq8c18IzV',
-        'HOST': 'dpg-cr47aeg8fa8c73di29hg-a.oregon-postgres.render.com',
-        'PORT': '5432',  # Default PostgreSQL port
-        'OPTIONS': {
-            'sslmode': 'require',  # Enable SSL for secure connections
-        },
+        'NAME': 'new_arts_db_redesign_aieb',  # Database name
+        'USER': 'new_arts_db_redesign_aieb_user',  # Database user
+        'PASSWORD': 'FMObEqsnqbTDxxgm2TnML9J1tX24OKti',  # Database password
+        'HOST': 'dpg-cr65qrrqf0us73a02r00-a.oregon-postgres.render.com',  # Database host
+        'PORT': '5432',  # Database port (default for PostgreSQL)
     }
 }
-
 
 
 # Password validation

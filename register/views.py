@@ -35,7 +35,7 @@ class SendOTPView(generics.GenericAPIView):
         response = requests.get(url)
 
         if response.status_code == 200:
-            # You can store the OTP session ID if needed for verification
+            # Youmn can store the OTP session ID if needed for verification
             otp_session_id = response.json().get('Details')
             return Response({'message': 'OTP sent successfully', 'otp_session_id': otp_session_id}, status=status.HTTP_200_OK)
         return Response({'detail': 'Failed to send OTP'}, status=status.HTTP_400_BAD_REQUEST)
