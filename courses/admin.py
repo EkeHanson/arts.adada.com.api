@@ -13,8 +13,8 @@ class InstructorsAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name',)
-    search_fields = ('name',)
+    list_display = ('title',)
+    search_fields = ('title',)
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):

@@ -3,7 +3,10 @@ from .models import Course, Instructors, Category, MainCategory
 
 
 class CourseSerializer(serializers.ModelSerializer):
-    duration = serializers.CharField(default=' 2 hours')
+    duration = serializers.CharField(default='2 hours')
+    
+    course_status = serializers.CharField(default='qualifications')
+    course_type = serializers.CharField(default='online')
     number_of_students = serializers.IntegerField(default= 0)
     class Meta:
         model = Course

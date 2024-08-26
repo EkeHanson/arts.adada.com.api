@@ -42,7 +42,7 @@ class MainCategory(models.Model):
 
 class Category(models.Model):
     mainCategory = models.ForeignKey(MainCategory, on_delete=models.CASCADE, related_name='categories')  # Relationship to Sector
-    name = models.CharField(max_length=100)
+    title = models.CharField(max_length=100)
     image = models.ImageField(upload_to='category_images', blank=True, null=True)
     details = models.TextField()
 
@@ -59,6 +59,11 @@ class Course(models.Model):
     details = models.TextField()
     amount = models.DecimalField(max_digits=10, decimal_places=2)
     course_code = models.CharField(max_length=25)
+
+    course_status = models.CharField(max_length=14, choices=[('qualifications', 'Qualifications'),('courses', 'Courses')])
+
+    course_type = models.CharField(max_length=10, choices=[('online', 'Online'),('on demand', 'On Demand'), ('class room', 'Class Room')])
+
     duration = models.CharField(max_length=45)
     days_per_week = models.PositiveIntegerField()
     enrolled_courses = models.BooleanField(default=False)
