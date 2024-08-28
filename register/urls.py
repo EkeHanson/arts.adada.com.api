@@ -9,7 +9,7 @@ router.register(r'users', RegisterView)
 urlpatterns = [
     path('', include(router.urls)),
     path('login/', LoginView.as_view(), name='login'),
-        path('send-otp/', SendOTPView.as_view(), name='send_otp'),
+    path('send-otp/', SendOTPView.as_view(), name='send_otp'),
     path('verify-otp/', VerifyOTPView.as_view(), name='verify_otp'),
 
     # path('password-reset/', PasswordResetRequestView.as_view(), name='password-reset-request'),
